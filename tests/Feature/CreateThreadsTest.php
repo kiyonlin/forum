@@ -8,6 +8,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class CreateThreadsTest extends TestCase
 {
+
     use DatabaseMigrations;
 
     /** @test */
@@ -16,6 +17,14 @@ class CreateThreadsTest extends TestCase
         $this->expectException(AuthenticationException::class);
 
         $this->post('/threads', []);
+    }
+
+    /** @test */
+    public function guests_can_not_see_the_create_page()
+    {
+        $this->withExceptionHandling()
+            ->get('/threads/create')
+            ->assertRedirect('login');
     }
 
     /** @test */
