@@ -15,11 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // \View::composer('*', function ($view) {
-        //     $view->with('channels', Channel::all());
-        // });
-        // another choice
-        \View::share('channels', Channel::all());
+        \View::composer('*', function ($view) {
+            $view->with('channels', Channel::all());
+        });
     }
 
     /**
