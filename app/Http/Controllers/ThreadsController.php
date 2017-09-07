@@ -16,21 +16,17 @@ class ThreadsController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
      * @param Channel $channel
      * @param ThreadFilters $filters
-     * @return \Illuminate\Http\Response
+     * @return ThreadsController|\Illuminate\Contracts\View\Factory|\Illuminate\Database\Query\Builder|\Illuminate\View\View
      */
     public function index(Channel $channel, ThreadFilters $filters)
     {
-        $threads = Thread::latest();
+        $threads = $this->getThreads($channel, $filters);
 
-        if ($channel->exists) {
-            $threads->where('channel_id', $channel->id);
+        if (request()->wantsJson()) {
+            return $threads;
         }
-
-        $threads = $threads->filter($filters)->get();
 
         return view('threads.index', compact('threads'));
     }
@@ -78,7 +74,7 @@ class ThreadsController extends Controller
     public function show($channelId, Thread $thread)
     {
         return view('threads.show', [
-            'thread' => $thread,
+            'thread'  => $thread,
             'replies' => $thread->replies()->paginate(20)
         ]);
     }
@@ -115,6 +111,22 @@ class ThreadsController extends Controller
     public function destroy(Thread $thread)
     {
         //
+    }
+
+    /**
+     * @param Channel $channel
+     * @param ThreadFilters $filters
+     * @return \Illuminate\Database\Query\Builder|static
+     */
+    private function getThreads(Channel $channel, ThreadFilters $filters)
+    {
+        $threads = Thread::latest()->filter($filters);
+
+        if ($channel->exists) {
+            $threads->where('channel_id', $channel->id);
+        }
+
+        return $threads->get();
     }
 
 }
