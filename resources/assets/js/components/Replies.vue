@@ -4,9 +4,9 @@
             <reply :data="reply" @deleted="remove(index)"></reply>
         </div>
 
-        <paginator :dataSet="dataSet" @updated="fetch"></paginator>
+        <paginator :dataSet="dataSet" @changed="fetch"></paginator>
 
-        <new-reply :endpoint="endpoint" @created="add"></new-reply>
+        <new-reply @created="add"></new-reply>
     </div>
 </template>
 
@@ -25,7 +25,6 @@
             return {
                 dataSet: false,
                 items: [],
-                endpoint: location.pathname + '/replies'
             }
         },
 
@@ -40,6 +39,13 @@
             },
 
             url(page = 1) {
+                if (!page) {
+                    // 正则表达式匹配query里的参数
+                    let query = location.search.match(/page=(\d+)/);
+
+                    // 有匹配到使用正则表达式括号分组里的值
+                    page = query ? query[1] : 1;
+                }
                 return `${location.pathname}/replies?page=${page}`;
             },
 
