@@ -10,7 +10,12 @@ class RepliesController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => 'index']);
+    }
+
+    public function index($channelId, Thread $thread)
+    {
+        return $thread->replies()->paginate(1);
     }
 
     public function store($channelId, Thread $thread)
@@ -24,7 +29,7 @@ class RepliesController extends Controller
             'user_id' => auth()->id()
         ]);
 
-        if(request()->wantsJson()){
+        if (request()->wantsJson()) {
             return $reply->load('owner');
         }
 
