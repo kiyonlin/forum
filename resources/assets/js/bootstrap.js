@@ -1,11 +1,11 @@
-
 window._ = require('lodash');
 
 try {
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap-sass');
-} catch (e) {}
+} catch (e) {
+}
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -14,6 +14,11 @@ try {
  */
 
 window.Vue = require('vue');
+
+window.Vue.prototype.authorize = function (handler) {
+    let user = window.App.user;
+    return user ? handler(user) : false;
+};
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

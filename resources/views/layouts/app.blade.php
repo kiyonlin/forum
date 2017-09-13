@@ -12,6 +12,14 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <script>
+        window.App = {!! json_encode([
+            'csrfToken' => csrf_token(),
+            'user' => auth()->user(),
+            'signedIn' => auth()->check()
+        ]) !!}
+    </script>
     <style>
         body {
             padding-bottom: 100px;
@@ -30,7 +38,9 @@
             margin-right: 1em;
         }
 
-        [v-cloak] { display: none; }
+        [v-cloak] {
+            display: none;
+        }
     </style>
 </head>
 <body>
