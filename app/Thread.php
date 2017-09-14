@@ -36,6 +36,7 @@ class Thread extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
     /**
      * @param $reply
      * @return Reply
@@ -53,5 +54,24 @@ class Thread extends Model
     public function scopeFilter($query, $filter)
     {
         return $filter->apply($query);
+    }
+
+    public function subscribe($user_id = null)
+    {
+        $this->subscriptions()->create([
+            'user_id' => $user_id ?: auth()->id()
+        ]);
+    }
+
+    public function unsubscribe($user_id = null)
+    {
+        $this->subscriptions()
+            ->where('user_id', $user_id ?: auth()->id())
+            ->delete();
+    }
+
+    public function subscriptions()
+    {
+        return $this->hasMany(ThreadSubscriptions::class);
     }
 }

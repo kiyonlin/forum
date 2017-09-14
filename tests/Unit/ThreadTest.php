@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Thread;
 use App\User;
 use Illuminate\Database\Eloquent\Collection;
 use Tests\TestCase;
@@ -43,7 +44,7 @@ class ThreadTest extends TestCase
     public function a_thread_can_add_a_reply()
     {
         $this->thread->addReply([
-            'body' => 'foo bar',
+            'body'    => 'foo bar',
             'user_id' => 1
         ]);
 
@@ -58,4 +59,26 @@ class ThreadTest extends TestCase
         $this->assertInstanceOf('App\Channel', $thread->channel);
     }
 
+    /** @test */
+    public function a_thread_can_be_subscribed_to()
+    {
+        $thread = create(Thread::class);
+
+        $thread->subscribe($userId = 1);
+
+        $this->assertEquals(1,
+            $thread->subscriptions()->where(['user_id' => $userId])->count());
+    }
+
+    /** @test */
+    public function a_thread_can_be_unsubscribed_from()
+    {
+        $thread = create(Thread::class);
+
+        $thread->subscribe($userId = 1);
+
+        $thread->unsubscribe($userId);
+
+        $this->assertCount(0, $thread->subscriptions);
+    }
 }
