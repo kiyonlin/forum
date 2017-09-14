@@ -11,7 +11,14 @@ class Thread extends Model
 
     protected $guarded = [];
 
+    /**
+     * The relationships to always eager-load.
+     *
+     * @var array
+     */
     protected $with = ['creator', 'channel'];
+
+    protected $appends = ['isSubscribedTo'];
 
     protected static function boot()
     {
@@ -73,5 +80,12 @@ class Thread extends Model
     public function subscriptions()
     {
         return $this->hasMany(ThreadSubscriptions::class);
+    }
+
+    public function getIsSubscribedToAttribute()
+    {
+        return $this->subscriptions()
+            ->where('user_id', auth()->id())
+            ->exists();
     }
 }
