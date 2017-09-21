@@ -1,7 +1,14 @@
 <?php
 
 namespace App\Transformers;
-
+/**
+ * 具体使用
+ * https://github.com/thephpleague/fractal
+ * http://fractal.thephpleague.com/
+ *
+ * Class Transformer
+ * @package App\Transformers
+ */
 abstract class Transformer
 {
 

@@ -1,28 +1,20 @@
 <?php
 
 namespace App\Transformers;
-/**
- * 具体使用
- * https://github.com/thephpleague/fractal
- * http://fractal.thephpleague.com/
- *
- * Class ThreadTransformer
- * @package App\Transformers
- */
-class ThreadTransformer extends Transformer
+
+class ExampleTransformer extends Transformer
 {
 
     /**
-     * Transform a specific thread
+     * Transform a specific item
      *
      * @param $item
      * @return array
      */
-    public function transform($thread)
+    public function transform($item)
     {
         return [
-            'title' => $thread->title,
-            'body'  => $thread->body,
+            'attribute' => $item->attribute,
         ];
     }
 }
