@@ -2,12 +2,57 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Response;
+use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 
-class Controller extends BaseController
+class ApiController extends Controller
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    protected $statusCode = 200;
+
+    public function respondNotFound($message = 'Not Found!')
+    {
+        return $this->setStatusCode(SymfonyResponse::HTTP_NOT_FOUND)
+            ->respondWithError($message);
+    }
+
+    public function respondInternalError($message = 'Internal server error!')
+    {
+        return $this->setStatusCode(SymfonyResponse::HTTP_INTERNAL_SERVER_ERROR)
+            ->respondWithError($message);
+    }
+
+    public function respond($data, $header = [])
+    {
+        return Response::json($data, $this->getStatusCode(), $header);
+    }
+
+    public function respondWithError($message)
+    {
+        return $this->respond([
+            'error' => [
+                'message'     => $message,
+                'status_code' => $this->getStatusCode()
+            ]
+        ]);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatusCode()
+    {
+        return $this->statusCode;
+    }
+
+    /**
+     * @param mixed $statusCode
+     */
+    public function setStatusCode($statusCode)
+    {
+        $this->statusCode = $statusCode;
+
+        return $this;
+    }
 }
