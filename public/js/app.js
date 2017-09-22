@@ -46276,7 +46276,7 @@ if (typeof jQuery === 'undefined') {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {/*!
- * Vue.js v2.4.3
+ * Vue.js v2.4.4
  * (c) 2014-2017 Evan You
  * Released under the MIT License.
  */
@@ -51001,7 +51001,7 @@ Object.defineProperty(Vue$3.prototype, '$ssrContext', {
   }
 });
 
-Vue$3.version = '2.4.3';
+Vue$3.version = '2.4.4';
 
 /*  */
 
@@ -57543,19 +57543,25 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(154)
 }
-var Component = __webpack_require__(2)(
-  /* script */
-  __webpack_require__(159),
-  /* template */
-  __webpack_require__(160),
-  /* styles */
-  injectStyle,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(159)
+/* template */
+var __vue_template__ = __webpack_require__(160)
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
 )
-Component.options.__file = "/Users/kiyon/Code/learn/forum/resources/assets/js/components/Flash.vue"
+Component.options.__file = "resources/assets/js/components/Flash.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Flash.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -57589,13 +57595,13 @@ var content = __webpack_require__(155);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(157)("235b8470", content, false);
+var update = __webpack_require__(157)("073733a0", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/_css-loader@0.28.7@css-loader/index.js!../../../../node_modules/_vue-loader@12.2.2@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-486b00f7\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/_vue-loader@12.2.2@vue-loader/lib/selector.js?type=styles&index=0!./Flash.vue", function() {
-     var newContent = require("!!../../../../node_modules/_css-loader@0.28.7@css-loader/index.js!../../../../node_modules/_vue-loader@12.2.2@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-486b00f7\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/_vue-loader@12.2.2@vue-loader/lib/selector.js?type=styles&index=0!./Flash.vue");
+   module.hot.accept("!!../../../../node_modules/_css-loader@0.28.7@css-loader/index.js!../../../../node_modules/_vue-loader@13.0.5@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-486b00f7\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=styles&index=0!./Flash.vue", function() {
+     var newContent = require("!!../../../../node_modules/_css-loader@0.28.7@css-loader/index.js!../../../../node_modules/_vue-loader@13.0.5@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-486b00f7\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=styles&index=0!./Flash.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -58009,21 +58015,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.show),
-      expression: "show"
-    }],
-    staticClass: "alert alert-success alert-flash",
-    attrs: {
-      "role": "alert"
-    }
-  }, [_c('strong', [_vm._v("Success!")]), _vm._v(" " + _vm._s(_vm.body) + "\n")])
-},staticRenderFns: []}
-module.exports.render._withStripped = true
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      directives: [
+        { name: "show", rawName: "v-show", value: _vm.show, expression: "show" }
+      ],
+      staticClass: "alert alert-success alert-flash",
+      attrs: { role: "alert" }
+    },
+    [_c("strong", [_vm._v("Success!")]), _vm._v(" " + _vm._s(_vm.body) + "\n")]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
@@ -58036,19 +58046,25 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(2)(
-  /* script */
-  __webpack_require__(162),
-  /* template */
-  __webpack_require__(163),
-  /* styles */
-  null,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(162)
+/* template */
+var __vue_template__ = __webpack_require__(163)
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
 )
-Component.options.__file = "/Users/kiyon/Code/learn/forum/resources/assets/js/components/Paginator.vue"
+Component.options.__file = "resources/assets/js/components/Paginator.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Paginator.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -58136,58 +58152,83 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return (_vm.shouldPaginate) ? _c('ul', {
-    staticClass: "pagination"
-  }, [_c('li', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.prevUrl),
-      expression: "prevUrl"
-    }]
-  }, [_c('a', {
-    attrs: {
-      "href": "#",
-      "aria-label": "Previous",
-      "rel": "prev"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.page--
-      }
-    }
-  }, [_c('span', {
-    attrs: {
-      "aria-hidden": "true"
-    }
-  }, [_vm._v("« Previous")])])]), _vm._v(" "), _c('li', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.nextUrl),
-      expression: "nextUrl"
-    }]
-  }, [_c('a', {
-    attrs: {
-      "href": "#",
-      "aria-label": "Next",
-      "rel": "next"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.page++
-      }
-    }
-  }, [_c('span', {
-    attrs: {
-      "aria-hidden": "true"
-    }
-  }, [_vm._v("Next »")])])])]) : _vm._e()
-},staticRenderFns: []}
-module.exports.render._withStripped = true
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.shouldPaginate
+    ? _c("ul", { staticClass: "pagination" }, [
+        _c(
+          "li",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.prevUrl,
+                expression: "prevUrl"
+              }
+            ]
+          },
+          [
+            _c(
+              "a",
+              {
+                attrs: { href: "#", "aria-label": "Previous", rel: "prev" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.page--
+                  }
+                }
+              },
+              [
+                _c("span", { attrs: { "aria-hidden": "true" } }, [
+                  _vm._v("« Previous")
+                ])
+              ]
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.nextUrl,
+                expression: "nextUrl"
+              }
+            ]
+          },
+          [
+            _c(
+              "a",
+              {
+                attrs: { href: "#", "aria-label": "Next", rel: "next" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.page++
+                  }
+                }
+              },
+              [
+                _c("span", { attrs: { "aria-hidden": "true" } }, [
+                  _vm._v("Next »")
+                ])
+              ]
+            )
+          ]
+        )
+      ])
+    : _vm._e()
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
@@ -58200,19 +58241,25 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(2)(
-  /* script */
-  __webpack_require__(165),
-  /* template */
-  __webpack_require__(166),
-  /* styles */
-  null,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(165)
+/* template */
+var __vue_template__ = __webpack_require__(166)
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
 )
-Component.options.__file = "/Users/kiyon/Code/learn/forum/resources/assets/js/components/UserNotifications.vue"
+Component.options.__file = "resources/assets/js/components/UserNotifications.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] UserNotifications.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -58290,44 +58337,63 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('li', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.notifications.length),
-      expression: "notifications.length"
-    }],
-    staticClass: "dropdown"
-  }, [_vm._m(0), _vm._v(" "), _c('ul', {
-    staticClass: "dropdown-menu"
-  }, _vm._l((_vm.notifications), function(notification) {
-    return _c('li', [_c('a', {
-      attrs: {
-        "href": notification.data.link
-      },
-      domProps: {
-        "textContent": _vm._s(notification.data.message)
-      },
-      on: {
-        "click": function($event) {
-          _vm.markAsRead(notification)
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "li",
+    {
+      directives: [
+        {
+          name: "show",
+          rawName: "v-show",
+          value: _vm.notifications.length,
+          expression: "notifications.length"
         }
-      }
-    })])
-  }))])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('a', {
-    staticClass: "dropdown-toggle",
-    attrs: {
-      "href": "#",
-      "data-toggle": "dropdown"
-    }
-  }, [_c('span', {
-    staticClass: "glyphicon glyphicon-bell"
-  })])
-}]}
-module.exports.render._withStripped = true
+      ],
+      staticClass: "dropdown"
+    },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "ul",
+        { staticClass: "dropdown-menu" },
+        _vm._l(_vm.notifications, function(notification) {
+          return _c("li", [
+            _c("a", {
+              attrs: { href: notification.data.link },
+              domProps: { textContent: _vm._s(notification.data.message) },
+              on: {
+                click: function($event) {
+                  _vm.markAsRead(notification)
+                }
+              }
+            })
+          ])
+        })
+      )
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "dropdown-toggle",
+        attrs: { href: "#", "data-toggle": "dropdown" }
+      },
+      [_c("span", { staticClass: "glyphicon glyphicon-bell" })]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
@@ -58340,19 +58406,25 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(2)(
-  /* script */
-  __webpack_require__(168),
-  /* template */
-  null,
-  /* styles */
-  null,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(168)
+/* template */
+var __vue_template__ = null
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
 )
-Component.options.__file = "/Users/kiyon/Code/learn/forum/resources/assets/js/pages/Thread.vue"
+Component.options.__file = "resources/assets/js/pages/Thread.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -58405,19 +58477,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(2)(
-  /* script */
-  __webpack_require__(170),
-  /* template */
-  __webpack_require__(182),
-  /* styles */
-  null,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(170)
+/* template */
+var __vue_template__ = __webpack_require__(182)
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
 )
-Component.options.__file = "/Users/kiyon/Code/learn/forum/resources/assets/js/components/Replies.vue"
+Component.options.__file = "resources/assets/js/components/Replies.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Replies.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -58517,19 +58595,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(2)(
-  /* script */
-  __webpack_require__(172),
-  /* template */
-  __webpack_require__(177),
-  /* styles */
-  null,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(172)
+/* template */
+var __vue_template__ = __webpack_require__(177)
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
 )
-Component.options.__file = "/Users/kiyon/Code/learn/forum/resources/assets/js/components/Reply.vue"
+Component.options.__file = "resources/assets/js/components/Reply.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Reply.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -58662,19 +58746,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(2)(
-  /* script */
-  __webpack_require__(174),
-  /* template */
-  __webpack_require__(175),
-  /* styles */
-  null,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(174)
+/* template */
+var __vue_template__ = __webpack_require__(175)
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
 )
-Component.options.__file = "/Users/kiyon/Code/learn/forum/resources/assets/js/components/Favorite.vue"
+Component.options.__file = "resources/assets/js/components/Favorite.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Favorite.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -58751,24 +58841,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('button', {
-    class: _vm.classes,
-    attrs: {
-      "type": "submit"
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "button",
+    {
+      class: _vm.classes,
+      attrs: { type: "submit" },
+      on: { click: _vm.toggle }
     },
-    on: {
-      "click": _vm.toggle
-    }
-  }, [_c('span', {
-    staticClass: "glyphicon glyphicon-heart"
-  }), _vm._v(" "), _c('span', {
-    domProps: {
-      "textContent": _vm._s(_vm.count)
-    }
-  })])
-},staticRenderFns: []}
-module.exports.render._withStripped = true
+    [
+      _c("span", { staticClass: "glyphicon glyphicon-heart" }),
+      _vm._v(" "),
+      _c("span", { domProps: { textContent: _vm._s(_vm.count) } })
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
@@ -59032,85 +59125,109 @@ webpackContext.id = 176;
 /* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "panel panel-default",
-    attrs: {
-      "id": 'reply-' + _vm.id
-    }
-  }, [_c('div', {
-    staticClass: "panel-heading"
-  }, [_c('div', {
-    staticClass: "level"
-  }, [_c('h5', {
-    staticClass: "flex"
-  }, [_c('a', {
-    attrs: {
-      "href": '/profiles' + _vm.data.owner.name
-    },
-    domProps: {
-      "textContent": _vm._s(_vm.data.owner.name)
-    }
-  }), _vm._v("\n                said "), _c('span', {
-    domProps: {
-      "textContent": _vm._s(_vm.ago)
-    }
-  })]), _vm._v(" "), (_vm.signedIn) ? _c('div', [_c('favorite', {
-    attrs: {
-      "reply": _vm.data
-    }
-  })], 1) : _vm._e()])]), _vm._v(" "), _c('div', {
-    staticClass: "panel-body"
-  }, [(_vm.editing) ? _c('div', [_c('div', {
-    staticClass: "form-gourp"
-  }, [_c('textarea', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.body),
-      expression: "body"
-    }],
-    staticClass: "form-control",
-    domProps: {
-      "value": (_vm.body)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.body = $event.target.value
-      }
-    }
-  })]), _vm._v(" "), _c('button', {
-    staticClass: "btn btn-xs btn-primary",
-    on: {
-      "click": _vm.update
-    }
-  }, [_vm._v("Update")]), _vm._v(" "), _c('button', {
-    staticClass: "btn btn-xs btn-link",
-    on: {
-      "click": _vm.cancel
-    }
-  }, [_vm._v("Cancel")])]) : _c('div', {
-    domProps: {
-      "textContent": _vm._s(_vm.body)
-    }
-  })]), _vm._v(" "), (_vm.canUpdate) ? _c('div', {
-    staticClass: "panel-footer level"
-  }, [_c('button', {
-    staticClass: "btn btn-xs mr-1",
-    on: {
-      "click": function($event) {
-        _vm.editing = true
-      }
-    }
-  }, [_vm._v("Edit")]), _vm._v(" "), _c('button', {
-    staticClass: "btn btn-xs btn-danger mr-1",
-    on: {
-      "click": _vm.destroy
-    }
-  }, [_vm._v("Delete")])]) : _vm._e()])
-},staticRenderFns: []}
-module.exports.render._withStripped = true
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "panel panel-default", attrs: { id: "reply-" + _vm.id } },
+    [
+      _c("div", { staticClass: "panel-heading" }, [
+        _c("div", { staticClass: "level" }, [
+          _c("h5", { staticClass: "flex" }, [
+            _c("a", {
+              attrs: { href: "/profiles" + _vm.data.owner.name },
+              domProps: { textContent: _vm._s(_vm.data.owner.name) }
+            }),
+            _vm._v("\n                said "),
+            _c("span", { domProps: { textContent: _vm._s(_vm.ago) } })
+          ]),
+          _vm._v(" "),
+          _vm.signedIn
+            ? _c("div", [_c("favorite", { attrs: { reply: _vm.data } })], 1)
+            : _vm._e()
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "panel-body" }, [
+        _vm.editing
+          ? _c("div", [
+              _c("div", { staticClass: "form-gourp" }, [
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.body,
+                      expression: "body"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  domProps: { value: _vm.body },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.body = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-xs btn-primary",
+                  on: { click: _vm.update }
+                },
+                [_vm._v("Update")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-xs btn-link",
+                  on: { click: _vm.cancel }
+                },
+                [_vm._v("Cancel")]
+              )
+            ])
+          : _c("div", { domProps: { textContent: _vm._s(_vm.body) } })
+      ]),
+      _vm._v(" "),
+      _vm.canUpdate
+        ? _c("div", { staticClass: "panel-footer level" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-xs mr-1",
+                on: {
+                  click: function($event) {
+                    _vm.editing = true
+                  }
+                }
+              },
+              [_vm._v("Edit")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-xs btn-danger mr-1",
+                on: { click: _vm.destroy }
+              },
+              [_vm._v("Delete")]
+            )
+          ])
+        : _vm._e()
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
@@ -59123,19 +59240,25 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(2)(
-  /* script */
-  __webpack_require__(179),
-  /* template */
-  __webpack_require__(180),
-  /* styles */
-  null,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(179)
+/* template */
+var __vue_template__ = __webpack_require__(180)
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
 )
-Component.options.__file = "/Users/kiyon/Code/learn/forum/resources/assets/js/components/NewReply.vue"
+Component.options.__file = "resources/assets/js/components/NewReply.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] NewReply.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -59221,50 +59344,63 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [(_vm.signedIn) ? _c('div', [_c('div', {
-    staticClass: "form-group"
-  }, [_c('textarea', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.body),
-      expression: "body"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "name": "body",
-      "id": "body",
-      "placeholder": "Have something to say?",
-      "rows": "5",
-      "required": ""
-    },
-    domProps: {
-      "value": (_vm.body)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.body = $event.target.value
-      }
-    }
-  })]), _vm._v(" "), _c('button', {
-    staticClass: "btn btn-default",
-    attrs: {
-      "type": "submit"
-    },
-    on: {
-      "click": _vm.addReply
-    }
-  }, [_vm._v("Post")])]) : _c('p', {
-    staticClass: "text-center"
-  }, [_vm._v("\n        Please "), _c('a', {
-    attrs: {
-      "href": "/login"
-    }
-  }, [_vm._v("sign in")]), _vm._v(" to participate in this discussion.\n    ")])])
-},staticRenderFns: []}
-module.exports.render._withStripped = true
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm.signedIn
+      ? _c("div", [
+          _c("div", { staticClass: "form-group" }, [
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.body,
+                  expression: "body"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                name: "body",
+                id: "body",
+                placeholder: "Have something to say?",
+                rows: "5",
+                required: ""
+              },
+              domProps: { value: _vm.body },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.body = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-default",
+              attrs: { type: "submit" },
+              on: { click: _vm.addReply }
+            },
+            [_vm._v("Post")]
+          )
+        ])
+      : _c("p", { staticClass: "text-center" }, [
+          _vm._v("\n        Please "),
+          _c("a", { attrs: { href: "/login" } }, [_vm._v("sign in")]),
+          _vm._v(" to participate in this discussion.\n    ")
+        ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
@@ -59303,34 +59439,44 @@ if (false) {
 /* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_vm._l((_vm.items), function(reply, index) {
-    return _c('div', {
-      key: reply.id
-    }, [_c('reply', {
-      attrs: {
-        "data": reply
-      },
-      on: {
-        "deleted": function($event) {
-          _vm.remove(index)
-        }
-      }
-    })], 1)
-  }), _vm._v(" "), _c('paginator', {
-    attrs: {
-      "dataSet": _vm.dataSet
-    },
-    on: {
-      "changed": _vm.fetch
-    }
-  }), _vm._v(" "), _c('new-reply', {
-    on: {
-      "created": _vm.add
-    }
-  })], 2)
-},staticRenderFns: []}
-module.exports.render._withStripped = true
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _vm._l(_vm.items, function(reply, index) {
+        return _c(
+          "div",
+          { key: reply.id },
+          [
+            _c("reply", {
+              attrs: { data: reply },
+              on: {
+                deleted: function($event) {
+                  _vm.remove(index)
+                }
+              }
+            })
+          ],
+          1
+        )
+      }),
+      _vm._v(" "),
+      _c("paginator", {
+        attrs: { dataSet: _vm.dataSet },
+        on: { changed: _vm.fetch }
+      }),
+      _vm._v(" "),
+      _c("new-reply", { on: { created: _vm.add } })
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
@@ -59343,19 +59489,25 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(2)(
-  /* script */
-  __webpack_require__(184),
-  /* template */
-  __webpack_require__(185),
-  /* styles */
-  null,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(184)
+/* template */
+var __vue_template__ = __webpack_require__(185)
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
 )
-Component.options.__file = "/Users/kiyon/Code/learn/forum/resources/assets/js/components/SubscribeButton.vue"
+Component.options.__file = "resources/assets/js/components/SubscribeButton.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] SubscribeButton.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -59420,15 +59572,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('button', {
-    class: _vm.classes,
-    on: {
-      "click": _vm.subscribe
-    }
-  }, [_vm._v("Subscribe")])
-},staticRenderFns: []}
-module.exports.render._withStripped = true
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("button", { class: _vm.classes, on: { click: _vm.subscribe } }, [
+    _vm._v("Subscribe")
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
