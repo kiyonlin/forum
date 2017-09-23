@@ -16,6 +16,11 @@ class UserSeeder extends Seeder
             'name'     => 'kiyon',
             'email'    => 'kiyonlin@163.com',
         ]);
+
+        factory('App\User')->create([
+            'name'     => 'nini',
+            'email'    => 'nini@163.com',
+        ]);
     }
 
 
