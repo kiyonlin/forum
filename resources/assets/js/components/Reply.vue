@@ -15,12 +15,14 @@
         </div>
         <div class="panel-body">
             <div v-if="editing">
-                <div class="form-gourp">
-                    <textarea v-model="body" class="form-control"></textarea>
-                </div>
+                <form @submit="update">
+                    <div class="form-gourp">
+                        <textarea v-model="body" class="form-control" required></textarea>
+                    </div>
 
-                <button class="btn btn-xs btn-primary" @click="update">Update</button>
-                <button class="btn btn-xs btn-link" @click="cancel">Cancel</button>
+                    <button class="btn btn-xs btn-primary">Update</button>
+                    <button class="btn btn-xs btn-link" @click="cancel" type="button">Cancel</button>
+                </form>
             </div>
 
             <div v-else v-text="body"></div>
