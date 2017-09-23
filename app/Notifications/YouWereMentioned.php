@@ -10,16 +10,15 @@ use Illuminate\Notifications\Messages\MailMessage;
 class YouWereMentioned extends Notification
 {
     use Queueable;
-    protected $thread, $reply;
+    protected $reply;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($thread, $reply)
+    public function __construct($reply)
     {
-        $this->thread = $thread;
         $this->reply = $reply;
     }
 
@@ -43,7 +42,7 @@ class YouWereMentioned extends Notification
     public function toArray($notifiable)
     {
         return [
-            'message' => $this->reply->owner->name . ' mentioned you in ' . $this->thread->title,
+            'message' => $this->reply->owner->name . ' mentioned you in ' . $this->reply->thread->title,
             'link'    => $this->reply->path()
         ];
     }
