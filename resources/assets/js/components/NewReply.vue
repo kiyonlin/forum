@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-if="signedIn">
-        <div class="form-group">
+            <div class="form-group">
                 <textarea name="body"
                           id="body"
                           class="form-control"
@@ -9,9 +9,9 @@
                           rows="5"
                           required
                           v-model="body"></textarea>
-        </div>
+            </div>
 
-        <button type="submit" class="btn btn-default" @click="addReply">Post</button>
+            <button type="submit" class="btn btn-default" @click="addReply">Post</button>
         </div>
         <p class="text-center" v-else="">
             Please <a href="/login">sign in</a> to participate in this discussion.
@@ -37,6 +37,9 @@
         methods: {
             addReply() {
                 axios.post(location.pathname + '/replies', {body: this.body})
+                    .catch( error => {
+                        flash(error.response.data, 'danger');
+                    })
                     .then(({data}) => {
                         this.body = '';
 
