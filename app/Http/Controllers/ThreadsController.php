@@ -6,6 +6,7 @@ use App\Channel;
 use App\Filters\ThreadFilters;
 use App\Thread;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 
 class ThreadsController extends Controller
 {
@@ -28,7 +29,9 @@ class ThreadsController extends Controller
             return $threads;
         }
 
-        return view('threads.index', compact('threads'));
+        $trending = array_map('json_decode', Redis::zrevrange('trending_threads', 0, 4));
+
+        return view('threads.index', compact('threads', 'trending'));
     }
 
     /**
@@ -36,7 +39,8 @@ class ThreadsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public
+    function create()
     {
         return view('threads.create');
     }
@@ -47,7 +51,8 @@ class ThreadsController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public
+    function store(Request $request)
     {
         $this->validate($request, [
             'title'      => 'required|spamfree',
@@ -72,11 +77,17 @@ class ThreadsController extends Controller
      * @param  \App\Thread $thread
      * @return \Illuminate\Http\Response
      */
-    public function show($channelId, Thread $thread)
+    public
+    function show($channelId, Thread $thread)
     {
         if (auth()->check()) {
             auth()->user()->read($thread);
         }
+
+        Redis::zincrby('trending_threads', 1, json_encode([
+            'title' => $thread->title,
+            'path'  => $thread->path(),
+        ]));
 
         return view('threads.show', compact('thread'));
     }
@@ -87,7 +98,8 @@ class ThreadsController extends Controller
      * @param  \App\Thread $thread
      * @return \Illuminate\Http\Response
      */
-    public function edit(Thread $thread)
+    public
+    function edit(Thread $thread)
     {
         //
     }
@@ -99,7 +111,8 @@ class ThreadsController extends Controller
      * @param  \App\Thread $thread
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Thread $thread)
+    public
+    function update(Request $request, Thread $thread)
     {
         //
     }
@@ -111,7 +124,8 @@ class ThreadsController extends Controller
      * @param  \App\Thread $thread
      * @return \Illuminate\Http\Response
      */
-    public function destroy($channel, Thread $thread)
+    public
+    function destroy($channel, Thread $thread)
     {
         $this->authorize('update', $thread);
 
@@ -129,7 +143,8 @@ class ThreadsController extends Controller
      * @param ThreadFilters $filters
      * @return \Illuminate\Database\Query\Builder|static
      */
-    private function getThreads(Channel $channel, ThreadFilters $filters)
+    private
+    function getThreads(Channel $channel, ThreadFilters $filters)
     {
         $threads = Thread::latest()->filter($filters);
 
