@@ -98,4 +98,16 @@ class ReadThreadsTest extends TestCase
         $this->assertCount($response['per_page'] > 1 ? 2 : 1, $response['data']);
         $this->assertEquals(2, $response['total']);
     }
+    
+    /** @test */
+    public function we_record_a_new_visit_each_time_the_thread_is_read()
+    {
+        $thread = create(Thread::class);
+
+        $this->assertSame(0, $thread->visits);
+
+        $this->call('GET', $thread->path());
+
+        $this->assertEquals(1, $thread->fresh()->visits);
+    }
 }
