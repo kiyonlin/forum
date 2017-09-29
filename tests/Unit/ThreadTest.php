@@ -28,7 +28,6 @@ class ThreadTest extends TestCase
     /** @test */
     public function a_thread_has_replies()
     {
-        dd(str_slug('大'));
         $this->assertInstanceOf(Collection::class, $this->thread->replies);
     }
 
