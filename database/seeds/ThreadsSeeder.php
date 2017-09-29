@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class RepliesSeeder extends Seeder
+class ThreadsSeeder extends Seeder
 {
 
     /**
@@ -12,7 +12,7 @@ class RepliesSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\Reply', 50)->create();
+        factory('App\Thread', 30)->create();
     }
 
 
