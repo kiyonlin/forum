@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Activity;
 use App\Reply;
 use App\Thread;
+use App\User;
 use Illuminate\Auth\AuthenticationException;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -28,21 +29,27 @@ class CreateThreadsTest extends TestCase
     }
 
     /** @test */
-    public function an_authenticated_users_must_first_confirm_their_email_address_before_creating_threads()
+    public function new_users_must_first_confirm_their_email_address_before_creating_threads()
     {
-        $this->publishThread()
-            ->assertRedirect('/threads')
+        $user = factory(User::class)->states('unconfirmed')->create();
+
+        $this->signIn($user);
+
+        $thread = make('App\Thread');
+
+        $this->post(route('threads'), $thread->toArray())
+            ->assertRedirect(route('threads'))
             ->assertSessionHas('flash', 'You must first confirm your email address.');
     }
 
     /** @test */
-    public function an_authenticated_user_can_create_new_forum_threads()
+    public function a_user_can_create_new_forum_threads()
     {
         $this->signIn();
 
         $thread = make('App\Thread');
 
-        $response = $this->post('/threads', $thread->toArray());
+        $response = $this->post(route('threads'), $thread->toArray());
 
         $this->get($response->headers->get('Location'))
             ->assertSee($thread->title)
@@ -117,6 +124,6 @@ class CreateThreadsTest extends TestCase
 
         $thread = make('App\Thread', $overrides);
 
-        return $this->post('/threads', $thread->toArray());
+        return $this->post(route('threads'), $thread->toArray());
     }
 }
