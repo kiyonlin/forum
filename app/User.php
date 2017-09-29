@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar_path'
+        'name', 'email', 'password', 'avatar_path', 'confirmation_token'
     ];
 
     /**
@@ -29,9 +29,20 @@ class User extends Authenticatable
         'password', 'remember_token', 'email'
     ];
 
+    protected $casts = [
+        'confirmed' => 'boolean'
+    ];
+
     public function getRouteKeyName()
     {
         return 'name';
+    }
+
+    public function confirm()
+    {
+        $this->confirmed = 1;
+
+        $this->save();
     }
 
     public function threads()
