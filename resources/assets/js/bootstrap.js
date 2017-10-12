@@ -58,3 +58,10 @@ window.events = new Vue();
 window.flash = function (message, level = 'success') {
     window.events.$emit('flash', {message, level});
 };
+
+import Echo from 'laravel-echo'
+
+window.Echo = new Echo({
+    broadcaster: 'socket.io',
+    host: window.location.hostname + ':6001'
+});
