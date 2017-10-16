@@ -23,15 +23,8 @@
         },
 
         created() {
-            window.events.$on('App\\Notifications\\ThreadWasUpdated', notification => {
-                this.notifications.push({
-                    id: notification.id,
-                    data: {
-                        message: notification.message,
-                        link: notification.link
-                    }
-                });
-            });
+            window.events.$on('App\\Notifications\\ThreadWasUpdated', notification => this.add(notification));
+            window.events.$on('App\\Notifications\\YouWereMentioned', notification => this.add(notification));
 
             axios.get('/profiles/' + this.userName + '/notifications')
                 .then(response => this.notifications = response.data);
@@ -48,6 +41,16 @@
                 axios.delete('/profiles/' + this.userName + '/notifications/' + notification.id);
 
                 this.notifications.splice(index, 1);
+            },
+
+            add(notification) {
+                this.notifications.push({
+                    id: notification.id,
+                    data: {
+                        message: notification.message,
+                        link: notification.link
+                    }
+                });
             }
         }
     }

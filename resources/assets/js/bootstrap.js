@@ -69,6 +69,7 @@ window.Echo = new Echo({
 if (window.App.user) {
     window.Echo.private(`App.User.${window.App.user.id}`)
         .notification((notification) => {
+        console.log(notification);
             window.events.$emit(notification.type, notification);
         });
 }
