@@ -65,3 +65,10 @@ window.Echo = new Echo({
     broadcaster: 'socket.io',
     host: window.location.hostname + ':6001'
 });
+
+if (window.App.user) {
+    window.Echo.private(`App.User.${window.App.user.id}`)
+        .notification((notification) => {
+            window.events.$emit(notification.type, notification);
+        });
+}

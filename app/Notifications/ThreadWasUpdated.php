@@ -3,6 +3,7 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -34,7 +35,7 @@ class ThreadWasUpdated extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['database', 'broadcast'];
     }
 
     /**
@@ -43,11 +44,19 @@ class ThreadWasUpdated extends Notification
      * @param  mixed $notifiable
      * @return array
      */
-    public function toArray($notifiable)
+    public function toDatabase($notifiable)
     {
         return [
             'message' => $this->reply->owner->name . ' replied to ' . $this->thread->title,
             'link'    => $this->reply->path()
         ];
+    }
+
+    public function toBroadcast($notifiable)
+    {
+        return new BroadcastMessage([
+            'message' => $this->reply->owner->name . ' replied to ' . $this->thread->title,
+            'link'    => $this->reply->path()
+        ]);
     }
 }

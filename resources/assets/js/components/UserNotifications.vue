@@ -5,10 +5,10 @@
         </a>
 
         <ul class="dropdown-menu">
-            <li v-for="notification in notifications">
+            <li v-for="(notification, index) in notifications">
                 <a :href="notification.data.link"
                    v-text="notification.data.message"
-                   @click="markAsRead(notification)"></a>
+                   @click="markAsRead(notification, index)"></a>
             </li>
         </ul>
     </li>
@@ -23,6 +23,16 @@
         },
 
         created() {
+            window.events.$on('App\\Notifications\\ThreadWasUpdated', notification => {
+                this.notifications.push({
+                    id: notification.id,
+                    data: {
+                        message: notification.message,
+                        link: notification.link
+                    }
+                });
+            });
+
             axios.get('/profiles/' + this.userName + '/notifications')
                 .then(response => this.notifications = response.data);
         },
@@ -34,8 +44,10 @@
         },
 
         methods: {
-            markAsRead(notification) {
+            markAsRead(notification, index) {
                 axios.delete('/profiles/' + this.userName + '/notifications/' + notification.id);
+
+                this.notifications.splice(index, 1);
             }
         }
     }
