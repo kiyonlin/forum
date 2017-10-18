@@ -35,4 +35,9 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'yunpian' => [
+        'key' => env('YUNPIAN_KEY'),
+        'secret' => env('YUNPIAN_SECRET'),
+        'sms_from' => '15556666666',
+    ],
 ];
