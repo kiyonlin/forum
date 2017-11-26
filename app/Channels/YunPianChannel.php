@@ -3,6 +3,7 @@
 namespace App\Channels;
 
 use Illuminate\Notifications\Notification;
+use Knox\Utils\TimeLength;
 
 class YunPianChannel
 {
