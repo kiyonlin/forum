@@ -59,17 +59,17 @@ window.flash = function (message, level = 'success') {
     window.events.$emit('flash', {message, level});
 };
 
-import Echo from 'laravel-echo'
+// import Echo from 'laravel-echo'
 
-window.Echo = new Echo({
-    broadcaster: 'socket.io',
-    host: window.location.hostname + ':6001'
-});
+// window.Echo = new Echo({
+//     broadcaster: 'socket.io',
+//     host: window.location.hostname + ':6001'
+// });
 
-if (window.App.user) {
-    window.Echo.private(`App.User.${window.App.user.id}`)
-        .notification((notification) => {
-        console.log(notification);
-            window.events.$emit(notification.type, notification);
-        });
-}
+// if (window.App.user) {
+//     window.Echo.private(`App.User.${window.App.user.id}`)
+//         .notification((notification) => {
+//         console.log(notification);
+//             window.events.$emit(notification.type, notification);
+//         });
+// }
