@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Str;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
