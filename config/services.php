@@ -40,4 +40,8 @@ return [
         'secret' => env('YUNPIAN_SECRET'),
         'sms_from' => '15556666666',
     ],
+
+    'recaptcha' => [
+        'secret' => env('RECAPTCHA_SECRET')
+    ]
 ];
