@@ -40,8 +40,8 @@ class MentionUsersTest extends TestCase
         create(User::class, ['name' => 'johndeo2']);
         create(User::class, ['name' => 'janedeo']);
 
-        $result = $this->getJson('/api/users', ['name' => 'john']);
+        $result = $this->getJson('/api/users?name=john');
 
-        $this->count(2, $result->json());
+        $this->assertCount(2, $result->json());
     }
 }

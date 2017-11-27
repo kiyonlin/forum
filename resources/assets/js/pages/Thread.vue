@@ -15,9 +15,10 @@
         },
         methods: {
             toggleLock() {
-                this.locked = ! this.locked;
-
-                axios[this.locked ? 'post' : 'delete'](`/locked-threads/${this.thread.slug}`);
+                axios[this.locked ? 'delete' : 'post'](`/locked-threads/${this.thread.slug}`)
+                    .then(_ => {
+                        this.locked = ! this.locked;
+                    });
             }
         }
     };
