@@ -38,12 +38,20 @@ class User extends Authenticatable
         return 'name';
     }
 
+    /**
+     * Mark the user's account as confirmed.
+     */
     public function confirm()
     {
         $this->confirmed = 1;
         $this->confirmation_token = null;
 
         $this->save();
+    }
+
+    public function isAdmin()
+    {
+        return in_array($this->name, ['kiyon']);
     }
 
     public function threads()
@@ -61,6 +69,10 @@ class User extends Authenticatable
         return $this->hasMany(Activity::class);
     }
 
+    /**
+     * Record that the user has read the given thread.
+     * @param $thread
+     */
     public function read($thread)
     {
         cache()->forever(
