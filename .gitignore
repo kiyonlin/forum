@@ -13,3 +13,4 @@ yarn-error.log
 /public/fonts/vendor/
 /public/css/app.css
 /public/js/app.js
+/.vscode/
