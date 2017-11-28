@@ -20,7 +20,7 @@ class ThreadsController extends Controller
     /**
      * @param Channel $channel
      * @param ThreadFilters $filters
-     * @return ThreadsController|\Illuminate\Contracts\View\Factory|\Illuminate\Database\Query\Builder|\Illuminate\View\View
+     * @return \Illuminate\Database\Query\Builder|\Illuminate\View\View
      */
     public function index(Channel $channel, ThreadFilters $filters, Trending $trending)
     {
@@ -39,7 +39,7 @@ class ThreadsController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -56,9 +56,9 @@ class ThreadsController extends Controller
     public function store(Request $request, Recaptcha $recaptcha)
     {
         $this->validate($request, [
-            'title'      => 'required|spamfree',
-            'body'       => 'required|spamfree',
-            'channel_id' => 'required|exists:channels,id',
+            'title'                => 'required|spamfree',
+            'body'                 => 'required|spamfree',
+            'channel_id'           => 'required|exists:channels,id',
             'g-recaptcha-response' => ['required', $recaptcha],
         ]);
 
@@ -83,7 +83,7 @@ class ThreadsController extends Controller
      * @param  \App\Thread $thread
      * @return \Illuminate\Http\Response
      */
-    public function show($channelId, Thread $thread, Trending $trending)
+    public function show($channel, Thread $thread, Trending $trending)
     {
         if (auth()->check()) {
             auth()->user()->read($thread);
@@ -97,14 +97,21 @@ class ThreadsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * update the given thread.
      *
+     * @param $channel
      * @param  \App\Thread $thread
-     * @return \Illuminate\Http\Response
      */
-    public function edit(Thread $thread)
+    public function update($channel, Thread $thread)
     {
-        //
+        $this->authorize('update', $thread);
+
+        $thread->update(request()->validate([
+            'title' => 'required|spamfree',
+            'body'  => 'required|spamfree',
+        ]));
+
+        return $thread;
     }
 
 
