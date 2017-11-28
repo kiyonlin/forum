@@ -53,9 +53,9 @@ class ThreadsController extends Controller
      * @param Recaptcha $recaptcha
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Recaptcha $recaptcha)
+    public function store(Recaptcha $recaptcha)
     {
-        $this->validate($request, [
+        request()->validate([
             'title'                => 'required|spamfree',
             'body'                 => 'required|spamfree',
             'channel_id'           => 'required|exists:channels,id',
@@ -69,7 +69,7 @@ class ThreadsController extends Controller
             'body'       => request('body')
         ]);
 
-        if ($request->wantsJson()) {
+        if (request()->wantsJson()) {
             return response($thread, 201);
         }
 
